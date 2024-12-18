@@ -13,7 +13,8 @@ defineTypes(Player, {
   prevRotationY: "number",
   avatarUrl: "string",
   gender: "string",
-  animationState: "string"
+  animationState: "string",
+  playerName: "string"
 });
 
 class MyRoomState extends Schema {

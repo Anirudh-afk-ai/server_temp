@@ -8,7 +8,7 @@ export class MyRoom extends Room {
     this.roomId = options.metaverseId;
     this.setState(new MyRoomState());
 
-    console.log("Room created!", options,this.roomId);
+    console.log("Room created!", options, this.roomId);
 
     this.onMessage("move", (client, message) => {
       const player = this.state.players.get(client.sessionId);
@@ -24,6 +24,18 @@ export class MyRoom extends Room {
         player.rotationY = message.rotationY;
         player.animationState = message.animationState;
       }
+    });
+
+    // Add this new onMessage handler after the existing "move" handler
+    this.onMessage("chat", (client, message) => {
+      const player = this.state.players.get(client.sessionId);
+      // Broadcast the chat message to all clients
+      this.broadcast("chat", {
+        sessionId: client.sessionId,
+        playerName: player.playerName,
+        avatarUrl: player.avatarUrl.replace('.glb', '.png'),
+        message: message.text
+      });
     });
   }
 
@@ -41,6 +53,7 @@ export class MyRoom extends Room {
     newPlayer.avatarUrl = options.avatarUrl || "default_avatar_url";
     newPlayer.gender = options.gender || "Male";
     newPlayer.animationState = "IDLE";
+    newPlayer.playerName = options.playerName || "Anonymous";
     this.state.players.set(client.sessionId, newPlayer);
   }
 
