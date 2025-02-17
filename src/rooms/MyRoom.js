@@ -41,7 +41,7 @@ export class MyRoom extends Room {
       if (adminPlayer && adminPlayer.isAdmin) {
         const playerToRemove = this.clients.find((c) => c.auth.uid === message.uid)
         if (playerToRemove) {
-          playerToRemove.leave()
+          playerToRemove.leave(4010)
           console.log(`Admin ${adminPlayer.playerName} removed player ${playerToRemove.sessionId}`)
         }
       }
@@ -56,6 +56,14 @@ export class MyRoom extends Room {
           this.broadcast("adminUpdate", { uid: playerToPromote.uid, isAdmin: true })
           console.log(`Admin ${adminPlayer.playerName} promoted player ${playerToPromote.playerName} to admin`)
         }
+      }
+    })
+
+    this.onMessage("toggleHandRaised", (client, message) => {
+      const player = this.state.players.get(client.sessionId)
+      if (player) {
+        player.handRaised = !player.handRaised
+        console.log(`Player ${player.playerName} toggled handRaised to ${player.handRaised}`)
       }
     })
   }
@@ -76,6 +84,7 @@ export class MyRoom extends Room {
     newPlayer.animationState = "IDLE"
     newPlayer.playerName = options.playerName || "Anonymous"
     newPlayer.isAdmin = options.isAdmin || false
+    newPlayer.handRaised = false
     newPlayer.uid = options.uid
     this.state.players.set(client.sessionId, newPlayer)
 
@@ -92,4 +101,3 @@ export class MyRoom extends Room {
     console.log("room", this.roomId, "disposing...")
   }
 }
-
