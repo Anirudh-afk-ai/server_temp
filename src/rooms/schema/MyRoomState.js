@@ -18,6 +18,7 @@ defineTypes(Player, {
   isAdmin: "boolean",
   uid: "string",
   handRaised: "boolean",
+  spatial: "boolean",
 })
 
 class MyRoomState extends Schema {

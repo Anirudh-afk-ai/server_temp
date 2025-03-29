@@ -66,6 +66,15 @@ export class MyRoom extends Room {
         console.log(`Player ${player.playerName} toggled handRaised to ${player.handRaised}`)
       }
     })
+
+    this.onMessage("toggleSpatial", (client, message) => {
+      const player = this.state.players.get(client.sessionId)
+      console.log(message)
+      if (player) {
+        player.spatial = message.value
+        console.log(`Player ${player.playerName} toggled spatial to ${player.spatial}`)
+      }
+    })
   }
 
   onJoin(client, options) {
@@ -85,6 +94,7 @@ export class MyRoom extends Room {
     newPlayer.playerName = options.playerName || "Anonymous"
     newPlayer.isAdmin = options.isAdmin || false
     newPlayer.handRaised = false
+    newPlayer.spatial = false
     newPlayer.uid = options.uid
     this.state.players.set(client.sessionId, newPlayer)
 
