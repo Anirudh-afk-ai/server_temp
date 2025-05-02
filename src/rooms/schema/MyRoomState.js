@@ -1,4 +1,4 @@
-import { Schema, MapSchema, defineTypes } from "@colyseus/schema";
+import { Schema, MapSchema, defineTypes } from "@colyseus/schema"
 
 class Player extends Schema {}
 
@@ -14,19 +14,23 @@ defineTypes(Player, {
   avatarUrl: "string",
   gender: "string",
   animationState: "string",
-  playerName: "string"
-});
+  playerName: "string",
+  isAdmin: "boolean",
+  uid: "string",
+  handRaised: "boolean",
+  spatial: "boolean",
+})
 
 class MyRoomState extends Schema {
   constructor() {
-    super();
-    this.players = new MapSchema();
+    super()
+    this.players = new MapSchema()
   }
 }
 
 defineTypes(MyRoomState, {
-  players: { map: Player }
-});
+  players: { map: Player },
+})
 
-export { MyRoomState, Player };
+export { MyRoomState, Player }
 
