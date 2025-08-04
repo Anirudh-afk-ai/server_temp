@@ -5,10 +5,9 @@
   "description": "npm init template for bootstrapping an empty Colyseus project",
   "main": "./src/index.js",
   "type": "module",
-"engines": {
-  "node": "18.x"
-}
-,
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "start": "node src/index.js",
     "loadtest": "node loadtest/example.js --room my_room --numClients 2",
@@ -22,18 +21,18 @@
   },
   "homepage": "https://github.com/colyseus/create-colyseus#readme",
   "devDependencies": {
-    "@colyseus/loadtest": "^0.15.0",
-    "@colyseus/testing": "^0.15.0",
+    "@colyseus/loadtest": "^0.16.1",
+    "@colyseus/testing": "^0.16.3",
     "@types/cors": "^2.8.17",
     "mocha": "^10.2.0",
     "rimraf": "^5.0.0"
   },
   "dependencies": {
-    "@colyseus/monitor": "^0.15.0",
-    "@colyseus/playground": "^0.15.3",
-    "@colyseus/tools": "^0.15.0",
-    "@colyseus/ws-transport": "^0.15.0",
-    "colyseus": "^0.15.0",
+    "@colyseus/monitor": "^0.16.7",
+    "@colyseus/playground": "^0.16.4",
+    "@colyseus/tools": "^0.16.12",
+    "@colyseus/ws-transport": "^0.16.5",
+    "colyseus": "^0.16.4",
     "cors": "^2.8.5",
     "express": "^4.18.2"
   }

@@ -1,2 +1,11 @@
 {
-}
+    "hosting": {
+      "rewrites": [
+        {
+          "source": "/matchmake/**",
+          "function": "colyseusServer"  
+        }
+      ]
+    }
+  }
+  

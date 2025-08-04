@@ -1,17 +1,20 @@
-/**
- * IMPORTANT:
- * ---------
- * Do not manually edit this file if you'd like to host your server on Colyseus Cloud
- *
- * If you're self-hosting (without Colyseus Cloud), you can manually
- * instantiate a Colyseus Server as documented here:
- *
- * See: https://docs.colyseus.io/server/api/#constructor-options
- */
+
 import { listen } from "@colyseus/tools";
+ import app from "./app.config.js";
 
-// Import arena config
-import app from "./app.config.js";
+// ─── Add CORS for matchmaking endpoints ──────────────────────────────────────
+import { matchMaker } from "@colyseus/core";
 
-// Create and listen on 2567 (or PORT environment variable.)
-listen(app);
+// matchMaker.controller.getCorsHeaders = (req) => ({
+//   "Access-Control-Allow-Origin": req.headers.origin,
+//   "Access-Control-Allow-Credentials": "true",
+//   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+//   "Access-Control-Allow-Methods": "OPTIONS, GET, POST",
+//   "Vary": "Origin",
+// });
+
+
+// ───────────────────────────────────────────────────────────────────────────────
+
+ // Create and listen on 2567 (or PORT environment variable.)
+ listen(app);

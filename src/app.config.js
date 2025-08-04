@@ -7,7 +7,7 @@ import { playground } from "@colyseus/playground";
  */
 import { MyRoom } from "./rooms/MyRoom.js";
 
-export default config.default({
+export default config({
 
     initializeGameServer: (gameServer) => {
         gameServer.define('metaverse', MyRoom)
@@ -31,7 +31,7 @@ export default config.default({
          * (It is not recommended to expose this route in a production environment)
          */
         if (process.env.NODE_ENV !== "production") {
-            app.use("/", playground);
+            app.use("/", playground());
         }
 
         /**
